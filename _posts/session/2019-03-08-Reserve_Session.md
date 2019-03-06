@@ -4,9 +4,9 @@ title: 예비세션_승윤 # 글 제목으로 수정
 category: Session # 본인에게 맞는 카테고리명을 적으세요
 --- 
 
-&nbsp;&nbsp;예비 세션: 페이스북 구현하기 _ 승윤
+&nbsp;&nbsp;예비 세션: 페이스북 구현하기 _ 승윤.
 
-&nbsp;&nbsp;<h2> VS코드로 간단한 페이스북 구현하기 </h2>
+&nbsp;&nbsp;<h2> VS코드로 간단한 페이스북 구현하기. </h2>
 
 &nbsp;1. 페이스북 프로젝트를 담을 폴더 생성. 
 
@@ -16,11 +16,11 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
   
   source myvenv/Scripts/activate
 ```
-&nbsp;3. 장고 설치하기
+&nbsp;3. 장고 설치하기.
 ```python 
   pip install django  
 ```
-&nbsp;4. 프로젝트 생성하기
+&nbsp;4. 프로젝트 생성하기.
 ```pyhton
   django-admin startproject facebook
 ```
@@ -30,7 +30,7 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
   
   python manage.py runserver
 ```
-&nbsp;6. 앱 생성하기
+&nbsp;6. 앱 생성하기.
 ```python
   python manage.py startapp facebookapp
 ```
@@ -41,8 +41,12 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
     ....생략
   ]
 ```
-&nbsp;8. 만든 앱 폴더에 templates 폴더 생성 --> 안에 home.html 파일 추가
-&nbsp;9. 
+&nbsp;8. 만든 앱 폴더에 templates 폴더 생성 --> 안에 home.html 파일 추가.
+&nbsp;9. views.py 폴더에 함수추가.
+```python
+  def home(request):
+    return render(request, 'home.html')
+```
 
   
   
