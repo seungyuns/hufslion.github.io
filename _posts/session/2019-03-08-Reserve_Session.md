@@ -10,10 +10,12 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
 
 1. 페이스북 프로젝트를 담을 폴더 생성.
 
-2. VS코드 프로젝트 생성.
+2. VS코드 프로젝트 생성 및 실행.
 
 ```python 
   python –m venv myvenv
+  
+  source myvenv/Scripts/activate
 ```
 
 
