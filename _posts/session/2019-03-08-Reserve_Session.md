@@ -8,7 +8,7 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
 
 &nbsp;&nbsp;<h2> VS코드로 간단한 페이스북 구현하기 </h2>
 
-1. 페이스북 프로젝트를 담을 폴더 생성.
+<h6>1. 페이스북 프로젝트를 담을 폴더 생성. </h6>
 
 2. VS코드 프로젝트 생성 및 실행.
 ```python 
@@ -24,10 +24,25 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
 ```pyhton
   django-admin startproject facebook
 ```
-
-
-
-
+5. 만든 프로젝트로 경로이동 후 서버돌려보기(django 페이지 확인).
+```pyhton
+  cd facebook
+  
+  python manage.py runserver
+```
+6. 앱 생성하기
+```python
+  python manage.py startapp facebookapp
+```
+7. 프로젝트 폴더안 setting.py파일에 만든 앱 등록해주기. (installed_apps 리스트 안에 --> <app이름>.apps.<첫글자대문자 app이름>Config)
+```python 
+  INSTALLED_APPS = [
+    'facebookapp.apps.FacebookappConfig',
+    ....생략
+  ]
+```
+8. 만든 앱 폴더에 templates 폴더 생성 --> 안에 home.html 파일 추가
+9. 
 
   
   
