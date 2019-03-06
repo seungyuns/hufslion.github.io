@@ -13,27 +13,27 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
 &nbsp;**1. 페이스북 프로젝트를 담을 폴더 생성.**
 
 &nbsp;**2. VS코드 프로젝트 생성 및 실행.**
-```python 
+```console 
   python –m venv myvenv
   
   source myvenv/Scripts/activate
 ```
 &nbsp;**3. 장고 설치하기.**
-```python 
+```console 
   pip install django  
 ```
 &nbsp;**4. 프로젝트 생성하기.**
-```pyhton
+```console
   django-admin startproject facebook
 ```
 &nbsp;**5. 만든 프로젝트로 경로이동 후 서버돌려보기(django 페이지 확인).**
-```pyhton
+```console
   cd facebook
   
   python manage.py runserver
 ```
 &nbsp;**6. 앱 생성하기.**
-```python
+```console
   python manage.py startapp facebookapp
 ```
 &nbsp;**7. 프로젝트 폴더안 setting.py파일에 만든 앱 등록해주기.<br> &nbsp;&nbsp;&nbsp;(installed_apps 리스트 안에 --> <app이름>.apps.<첫글자대문자 app이름>Config)**
