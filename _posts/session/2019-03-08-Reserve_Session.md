@@ -44,6 +44,7 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
   ]
 ```
 &nbsp;**8. 만든 앱 폴더에 templates 폴더 생성 --> 안에 home.html 파일 추가.**
+
 &nbsp;**9. views.py 폴더에 함수추가.**
 ```python
   def home(request):
