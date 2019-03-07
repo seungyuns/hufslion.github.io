@@ -116,5 +116,5 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
     height: 500px;
  }
 ```
-&nbsp;**18. header안에 있는 버튼1, search, 버튼2 요소들을 한줄에 오도록 만들기.<br> &nbsp;&nbsp;&nbsp; 이때 ﬂoat:left, ﬂoat:right을 사용해 띄워줄 수도 있고, position:absolute을 사용해 위치를 지정해줄 수도 있으며, dispaly:inline-block으로 한줄에 오게할 수 있습니다. 이번에는 position:absolute을 사용합니다.<br> &nbsp;&nbsp;&nbsp;
+&nbsp;**18. header안에 있는 버튼1, search, 버튼2 요소들을 한줄에 오도록 만들기.<br> &nbsp;이때 ﬂoat:left, ﬂoat:right을 사용해 띄워줄 수도 있고, position:absolute을 사용해 위치를 지정해줄 수도 있으며, dispaly:inline-block으로 한줄에 오게할 수 있습니다. 이번에는 position:absolute을 사용합니다.<br>&nbsp;
 position:absolute 사용시 주의할 점은 같은 div 안에 있는 모든 요소가 absolute일 때 그 div에 반드시 높이값을 지정주어야 한다는 것 입니다. (absolute은 공중에 떠있는 상태기 때문에 안 쪽의 모든 요소가 absolute라면 내용물이 없다고 판단하여 높이가 0이 되기 때문)** 
