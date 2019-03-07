@@ -94,7 +94,7 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
 ```python
  {%extends 'base.html' %}
 ```
-&nbsp;**16. 확인하기 쉽게 base.html에 기본 css 입히기 **
+&nbsp;**16. 확인하기 쉽게 base.html에 기본 css 입히기.**
 ```html
 <style>
     .header {
@@ -148,3 +148,24 @@ position:absolute 사용시 주의할 점은 같은 div 안에 있는 모든 요
     }
 </style>
 ```
+
+&nbsp;**19. 이번에는 float:left방식으로 .footer안에 있는 탭1,2,3,4가 한줄에 오도록 만들기**
+```css
+    .footer {
+        border-top: 1px solid #cccccc;
+        background-color: #ffffff;
+        height: 50px;
+    }
+    .tab1 {
+        float: left;
+    }
+    .tab2 {
+        float: left;
+    }
+    .tab3 {
+        float: left;
+    }
+    .tab4 {
+        float: left;
+    }
+ ```
