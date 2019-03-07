@@ -176,6 +176,24 @@ position:absolute 사용시 주의할 점은 같은 div 안에 있는 모든 요
         background-color: #323f6b; 
     }
 ```
+&nbsp;**21. 이미지 다운로드 및 static파일 생성**
+* http://bit.ly/2z4e1rt
+* facebookapp폴더에 static파일 생성. 
+* 다운받은 이미지파일 static파일에 넣기.
+* setting.py 파일 static파일 위치와 모을 위치 명시.
+```python 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'facebookapp', 'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+```
+* 지정한 위치로 static파일 모으기.
+```console
+ python manage.py collectstatic
+```
+
+
 &nbsp;**21. 디테일 잡기.**
 * tab1,2,3,4 style에 width:25% 속성 추가.
 * 가운데 정렬을 위해 .footer style에 text-align:center 추가.
+* 
