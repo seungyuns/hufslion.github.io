@@ -67,7 +67,7 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
 ```
 &nbsp;**13. setting.py파일 내 템플릿(TEMPLATES) 디렉토리 리스트에 공통 templates가 있는 경로 입력.**
 
-&nbsp;**14. base.html에 기본 틀 잡아주기*
+&nbsp;**14. base.html에 기본 틀 잡아주기.**
 ```html
  <body>
     <style>
@@ -89,4 +89,30 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
         <div class="tab4">탭4</div>
     </div>
 </body>
+```
+&nbsp;**15. home.html에서 공통파일(base.html) 불러오기.**
+```python
+ {%extends 'base.html' %}
+```
+&nbsp;**16. 확인하기 쉽게 base.html에 기본 css 입히기 **
 ```html
+<style>
+    .header {
+        background-color: #475d9f;
+        color: #fff;
+    }
+    .container {
+        background-color: #d7d8dc;
+    }
+    .footer {
+        background-color: gray;
+    }
+</style>
+```
+&nbsp;**17. 내용물 부분 .container 클래스 div 높이를 500px로 조정**
+```html
+ .container {     
+    background-color: #d7d8dc;     
+    height: 500px;
+ }
+```
