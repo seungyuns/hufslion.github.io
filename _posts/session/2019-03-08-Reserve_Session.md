@@ -116,3 +116,4 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
     height: 500px;
  }
 ```
+&nbsp;**18. 내용물 부분 .container 클래스 div 높이를 500px로 조정**
