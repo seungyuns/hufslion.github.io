@@ -45,11 +45,48 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
 ```
 &nbsp;**8. 만든 앱 폴더에 templates 폴더 생성 --> 안에 home.html 파일 추가.**
 
-&nbsp;**9. views.py 폴더에 함수추가.**
+&nbsp;**9. views.py 파일에 함수추가.**
 ```python
   def home(request):
     return render(request, 'home.html')
 ```
+&nbsp;**10. url.py 파일에 views파일 임포트 및 경로설정.**
+```python
+ import facebookapp.views
+ 
+ urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', facebookapp.views.home, name='home'),
+]
+```
+&nbsp;**11. 최상단 폴더에 (manage.py가 있는 폴더) template폴더 생성 후 base.html 파일 추가.**
 
-  
-  
+&nbsp;**12. setting.py파일 내 템플릿(TEMPLATES) 디렉토리 리스트에 공통 templates가 있는 경로 입력.**
+```python 
+ 'DIRS': ['facebook/templates']
+```
+&nbsp;**13. setting.py파일 내 템플릿(TEMPLATES) 디렉토리 리스트에 공통 templates가 있는 경로 입력.**
+
+&nbsp;**14. base.html에 기본 틀 잡아주기*
+```html
+ <body>
+    <style>
+    </style>
+    <div class="header">
+        <div class="btn1">버튼1</div>
+        <div class="search">
+            <input type="text" class="searchbar" placeholder="Search">
+        </div>
+        <div class="btn2">버튼2</div>
+    </div>
+    <div class="container">
+        내용물
+    </div>
+    <div class="footer">
+        <div class="tab1">탭1</div>
+        <div class="tab2">탭2</div>
+        <div class="tab3">탭3</div>
+        <div class="tab4">탭4</div>
+    </div>
+</body>
+```html
