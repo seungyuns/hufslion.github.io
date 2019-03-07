@@ -110,7 +110,7 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
 </style>
 ```
 &nbsp;**17. 내용물 부분 .container 클래스 div 높이를 500px로 조정**
-```html
+```css
  .container {     
     background-color: #d7d8dc;     
     height: 500px;
@@ -149,11 +149,11 @@ position:absolute 사용시 주의할 점은 같은 div 안에 있는 모든 요
 </style>
 ```
 
-&nbsp;**19. 이번에는 float:left방식으로 .footer안에 있는 탭1,2,3,4가 한줄에 오도록 만들기**
+&nbsp;**19. 이번에는 float:left방식으로 .footer안에 있는 탭1,2,3,4가 한줄에 오도록 만들기 <br>&nbsp; position:absoulte와 마찬가지로 height를 지정해주어야 한다.**
 ```css
     .footer {
         border-top: 1px solid #cccccc;
-        background-color: #ffffff;
+        background-color: #fafafa;
         height: 50px;
     }
     .tab1 {
@@ -169,3 +169,13 @@ position:absolute 사용시 주의할 점은 같은 div 안에 있는 모든 요
         float: left;
     }
  ```
+&nbsp;**20. searchbar 테두리 넣기, 배경 색상 변경.**
+```css
+.searchbar {     
+        border: 1px solid #2c3863;     
+        background-color: #323f6b; 
+    }
+```
+&nbsp;**21. 디테일 잡기.**
+* tab1,2,3,4 style에 width:25% 속성 추가.
+* 가운데 정렬을 위해 .footer style에 text-align:center 추가.
