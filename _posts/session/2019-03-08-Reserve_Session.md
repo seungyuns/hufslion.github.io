@@ -620,3 +620,143 @@ def remove(request, article_id):
 ```
 
 
+ &nbsp;**32. 댓글(comment)기능 만들기.**
+ 
+ * facebookapp/models.py 에서 comment 기능 모델 추가하기.
+ ```python 
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    # 다른 모델과 관련지을때 ForeignKey를 쓴다. CASCADE: 게시글이 사라지면 댓글도 함께 삭제하기. related_name: 관련 모델에서 코멘트 모델을 부를 이름.
+    author = models.CharField(max_length=120)
+    text = models.TextField()
+    password = models.CharField(max_length=120)
+    created_t = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text
+```
+
+* 모델을 작업했으니 makemigrations, migrate 하기.
+* Comment모델 관리자페이지에 등록하기.
+```python
+from facebookapp.models import Comment
+admin.site.register(Comment)
+```
+* 관리자 페이지에서 댓글 3개 이상 추가해보기
+* detail.html 파일 feed div 아래에 댓글 틀 삽입하기.
+```html
+    <div class="comment_list">
+        <div class="comment"><span class="name">코멘트 글쓴이</span> 코멘트 내용</div>
+        <div class="comment__date">코멘트 생성일 <a href="코멘트 삭제 주소"><img src="/static/ic_delete.png" height="16px"></a></div>
+    </div>
+```
+* style 부분에 댓글 css 추가해주기.
+```css
+<style>
+    .comment_list {
+        background-color: #f0f1f4;
+        border-bottom: 1px solid #bcbdc3;
+        padding-top: 0.1px;
+    }
+
+    .comment {
+        background-color: #fff;
+        border-radius: 30px;
+        margin: 15px;
+        padding: 15px;
+        margin-bottom: 0;
+    }
+
+    .comment__date {
+        margin: 0 15px;
+        padding: 8px 15px;
+        padding-bottom: 0px;
+        font-size: 13px;
+    }
+
+    .name {
+        font-weight: bold;
+        color: #445994;
+    }
+
+    .form-wrapper {
+        padding: 15px;
+    }
+
+    /* 똑같은 스타일을 적용하고 싶으면 ,를 입력해주면 됩니다. */
+    .form-wrapper input,
+    .form-wrapper textarea {
+        border: 1px solid #ddd;
+        width: 100%;
+        padding: 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        margin-top: 2px;
+        margin-bottom: 5px;
+    }
+
+    button {
+        border: 1px solid #405ea3;
+        background-color: #4967ad;
+        color: #fff;
+        font-weight: 500;
+        font-size: 15px;
+        padding: 3px 16px;
+        border-radius: 2px;
+    }
+</style>
+```
+* article과 댓글 사이 불필요한 여백 지우기
+```css
+ .feed{
+  margin: 7px 0 0 0;
+ }
+```
+
+* 미리 만들어둔 comment 틀에 모델 내용 끌어오기.
+```python
+  
+    <div class="comment_list">
+        {% for comment in feed.comments.all%}
+        <div class="comment"><span class="name">{{comment.author}}</span> {{comment.text}}</div>
+        <div class="comment__date">{{comment.created_at}} <a href="코멘트 삭제 주소"><img src="/static/ic_delete.png" height="16px"></a>     </div>
+        {% endfor %}
+    </div>
+```
+
+* 댓글 작성하는 폼 삽입하기 ({% endfor %} 밑에)
+```html
+ <div class="form-wrapper">
+            <span>Comments</span>
+            <form action="" method='Post'>
+                {%csrf_token %}
+                <input type="text" name="author" placeholder="이름" /><br/>
+                <input type="password" name="password" placeholder="비밀번호"/><br/>
+                <textarea name="text" placeholder="코멘트 내용"></textarea>
+                <button type="submit">등록</button>
+            </form>
+        </div>
+```
+
+* views.py파일 detail 함수안에 댓글 작성 로직 연결하기. (상단에 Comment 모델 임포트 해오기)
+```python 
+from facebookapp.models import Comment
+
+
+def detail(request, article_id):
+    article = Article.objects.get(pk=article_id)
+
+    if request.method == "POST":
+        Comment.objects.create(
+            article=article,
+            author=request.POST.get('author'),
+            text=request.POST.get('text'),
+            password=request.POST.get("password")
+        )
+        return redirect(f'/article/{article.pk}')
+    return render(request, 'detail.html', {'feed':article})
+```
+
+
+
