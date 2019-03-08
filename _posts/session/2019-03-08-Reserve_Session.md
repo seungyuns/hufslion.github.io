@@ -509,3 +509,114 @@ def new(request):
 
     return render(request, 'new.html')
 ```
+* 빈칸이 하나라도 있으면 게시물 작성 안하기.
+```python
+ef new(request):
+    if request.method == 'POST':
+        if request.POST['author'] != '' and request.POST['title'] != '' and request.POST['content'] != '' and request.POST['password'] != '': 
+            new_article = Article.objects.create(
+                author=request.POST['author'],
+                title=request.POST['title'],
+                text=request.POST['content'],
+                password=request.POST['password']
+            )
+            return redirect(f'/article/{new_article.pk}')
+
+    return render(request, 'new.html')
+ ```
+ &nbsp;**31. 게시글 수정, 삭제 기능 만들기**
+ * templates 폴더에 edit.html , remove.html 파일 만들기
+ * detail.html 페이지에 수정버튼과 삭제버튼 이미지 삽입하기.
+```html
+   <div>
+        <a href="{% url 'edit' feed.id%}"> <img src="/static/ic_edit.png" height="16px"></a>
+        <a href="{% url 'remove' feed.id%}"> <img src="/static/ic_delete.png" height="16px"></a> 
+   </div>
+```
+ * 두페이지 urls.py 연결과 views.py 함수 만들어주기 
+ ```python 
+ def remove(request, article_id):
+    return render(request, 'remove.html')
+
+def edit(request, article_id):
+    return render(request, 'edit.html')
+```
+```python 
+    path('article/<int:article_id>/edit', facebookapp.views.edit, name='edit'),
+    path('article/<int:article_id>/remove', facebookapp.views.remove, name='remove'),
+ ```
+ * remove.html 틀 만들기.
+```html
+{%extends 'base.html' %}
+{%block contents%}
+<div class="container">
+    <div class="form_box">
+        <form method="POST">
+        {%csrf_token%}
+        <h3>{{feed.title}} - 삭제하기</h3>
+        <input class="input_field" type="password" placeholder="글 비밀번호" name="password"><br>
+        <button class="write_button">삭제</button>
+        </form>
+    </div>
+</div>
+{%endblock%}  
+```
+* views.py에 remove 함수 변경하기.
+```python
+def remove(request, article_id):
+    article=Article.objects.get(pk=article_id)
+    return render(request, 'remove.html', {'feed': article})
+```
+* edit.html 틀 만들기.
+```html
+{%extends 'base.html' %}
+{%block contents%}
+<div class=form_box>
+<form method="POST">
+    {% csrf_token %}
+    <h3>글 수정하기</h3>
+    <input class="input_field" type="text" placeholder="글쓴이의 이름은?" name="author" value="{{ feed.author }}"><br>
+    <input class="input_field" type="password" placeholder="글 비밀번호" name="password"><br>
+    <input class="input_field" type="text" placeholder="제목을 입력해주세요." name="title"  value="{{ feed.title }}"><br>
+    <textarea class="textarea_field" placeholder="내용을 입력해주세요." name="content">{{ feed.text }}</textarea><br>
+    <button class="write_button">수정</button>
+</form>
+</div>
+{%endblock%}  
+```
+* views.py에 edit 함수 변경하기.
+```python
+def edit(request, article_id):
+    article=Article.objects.get(pk=article_id)
+    return render(request, 'edit.html', {'feed':article})
+```
+
+* views.py 파일에 edit 로직 작성하기.
+``` python
+def edit(request, article_id):
+    article=Article.objects.get(pk=article_id)
+
+    if request.method == 'POST':
+        if request.POST['password'] == article.password:
+            article.author = request.POST['author']
+            article.title = request.POST['title']
+            article.text = request.POST['content']
+            article.save()
+            return redirect(f'/article/{article.pk}')
+
+    return render(request, 'edit.html', {'feed':article})
+```
+* views.py 파일에 remove 로직 작성하기.
+```python
+def remove(request, article_id):
+    article=Article.objects.get(pk=article_id)
+
+    if request.method == 'POST':
+        if request.POST['password'] == article.password:
+            article.delete()
+            return redirect('/')
+
+    return render(request, 'remove.html', {'feed': article})
+```
+
+
