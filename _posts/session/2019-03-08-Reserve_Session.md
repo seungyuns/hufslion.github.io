@@ -359,4 +359,51 @@ def home(request):
 
 {%endblock%}  
 ```
- 
+
+&nbsp;**29 자세히 보기 페이지 만들기**
+* facebookapp/template폴더 안에 detail.html 생성.
+* views.py 파일에서 detail 페이지 함수 추가.
+```python 
+def detail(request, article_id):
+    article = Article.objects.get(pk=article_id)
+    return render(request, 'detail.html', {'feed':article})
+```
+* url.py에 detail 페이지 path 추가.
+```python
+ path('/<int:article_id>', facebookapp.views.detail, name='detail'),
+```
+* home페이지와 detail 페이지 연결하기 (home,html)
+```html
+{%extends 'base.html' %}
+{%block contents%}
+         
+<div class="container">
+    {%for feed in articles %}
+    <div class="feed">
+        <h3 class="name">{{feed.author}}</h3>
+        <div class="date">{{feed.created_at}} </div>
+        <a href="{%url 'detail' feed.id%}" class="title"> {{feed.title}}</a>
+        <p class="content">{{feed.text}} <a class="more" href="{%url 'detail' feed.id%}"> 자세히 </a></p>
+        <div class="accessory">
+            <img src="/static/ic_like.jpg" width="16px"> Like <img src="/static/ic_comment.jpg" width="16px"> <a class="Comments" href="{%url 'detail' feed.id%}">Comments</a>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+
+{%endblock%}  
+```
+* style 추가하기
+```css
+    .more{
+        font-size:px;
+        color: #6184dddd; 
+    }
+    a{
+        color: inherit;
+        text-decoration: none;
+    }
+```
+
+
+
