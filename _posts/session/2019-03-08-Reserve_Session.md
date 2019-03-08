@@ -203,9 +203,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 * 검색창(.searchbar) width:100%로 만들고, border-radius: 4px.
 * 상단(.header) 높이를 42px로 변경
 * 검색창(.searchbar) padding:6px; margin-top:7px; 속성을 넣어 가운데 위치하게 만들기, color:#ffffff 입력.
-* 버튼1을 <img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">로 변경
-* 버튼2를 <img src="/static/ic_info.jpg" width="22px" style="margin:9px 0 0 13px">로 변경
-
+* 버튼1을 
+```html
+<img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">로 변경
+```
+* 버튼2를 
+```html
+<img src="/static/ic_info.jpg" width="22px" style="margin:9px 0 0 13px">로 변경
+```
 &nbsp;**23. 하단 디테일 잡기.**
 * tab1,2,3,4 style에 width:25% 속성 추가.
 * 가운데 정렬을 위해 .footer style에 text-align:center 추가.
