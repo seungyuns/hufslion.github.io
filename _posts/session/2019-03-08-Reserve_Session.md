@@ -370,7 +370,7 @@ def detail(request, article_id):
 ```
 * url.py에 detail 페이지 path 추가.
 ```python
- path('/<int:article_id>', facebookapp.views.detail, name='detail'),
+ path('article/<int:article_id>', facebookapp.views.detail, name='detail'),
 ```
 * home페이지와 detail 페이지 연결하기 (home,html)
 ```html
@@ -441,13 +441,16 @@ path('new/', facebookapp.views.new, name="new"),
 {%block contents%}
          
 <div class="form_box">
-    <h3> 게시물 작성하기</h3>
-    <input class="input_field" type="text" placeholder="글쓴이의 이름은?"><br>
-    <input class="input_field" type="password" placeholder="글 비밀번호"><br>
-    <input class="input_field" type="text" placeholder="제목을 입력해주세요"><br>
-    <textarea class="textarea_field" placeholder="내용을 입력해주세요."></textarea><br>
-    <button class="write_button">게시</button>
-</div>
+    <form method="POST">
+    {%csrf_token%}
+     <h3> 게시물 작성하기</h3>
+        <input class="input_field" type="text" placeholder="글쓴이의 이름은?" name="author"><br>
+        <input class="input_field" type="password" placeholder="글 비밀번호"name="password"><br>
+        <input class="input_field" type="text" placeholder="제목을 입력해주세요"name="title"><br>
+        <textarea class="textarea_field" placeholder="내용을 입력해주세요." name="content"></textarea><br>
+        <button class="write_button">게시</button>
+    </div>
+</form>
 
 {%endblock%}  
 ```
@@ -486,5 +489,23 @@ path('new/', facebookapp.views.new, name="new"),
         font-size:18px;
     }
  ```
- 
+ * base.html 글쓰기 버튼 이미지 new.html로 링크 연결하기. 
+```html
+ <div class="btn1"><a href="{%url 'new' %}"><img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px"></a></div>
+```
+* views.py 파일 전에 작성해두었던 new 함수에 로직 추가하기. (상단에 refirect 기능도 임포트 해주기)
+```python
+from django.shortcuts import render, redirect
 
+def new(request):
+    if request.method == 'POST':
+        new_article = Article.objects.create(
+            author=request.POST['author'],
+            title=request.POST['title'],
+            text=request.POST['content'],
+            password=request.POST['password']
+        )
+        return redirect(f'/article/{new_article.pk}')
+
+    return render(request, 'new.html')
+```
