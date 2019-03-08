@@ -203,21 +203,33 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 * 검색창(.searchbar) width:100%로 만들고, border-radius: 4px.
 * 상단(.header) 높이를 42px로 변경
 * 검색창(.searchbar) padding:6px; margin-top:7px; 속성을 넣어 가운데 위치하게 만들기, color:#ffffff 입력.
-* 버튼1을 
+* 버튼1을 이미지 파일로 변경
 ```html
-<img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">로 변경
+<img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">
 ```
-* 버튼2를 
+* 버튼2를 이미지 파일로 변경
 ```html
-<img src="/static/ic_info.jpg" width="22px" style="margin:9px 0 0 13px">로 변경
+<img src="/static/ic_info.jpg" width="22px" style="margin:9px 0 0 13px">
 ```
 &nbsp;**23. 하단 디테일 잡기.**
 * tab1,2,3,4 style에 width:25% 속성 추가.
 * 가운데 정렬을 위해 .footer style에 text-align:center 추가.
-* 탭1을 <img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">로 변경
-* 탭2를 <img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">로 변경
-* 탭3을 <img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">로 변경
-* 탭4를 <img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">로 변경
+* 탭1을 이미지 파일로 변경 
+```html
+<img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">
+```
+* 탭2를 이미지 파일로 변경
+```html
+<img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">
+```
+* 탭3을 이미지 파일로 변경
+```html
+<img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">
+```
+* 탭4를 이미지 파일로 변경
+```html
+<img src="/static/ic_pencil.jpg" width="22px" style="margin:9px 0 0 13px">
+```
 * 하단(.footer)에 position:fixed; bottom: 0; left:0; right:0; 속성 추가. 
 * .container의 height를 삭제하기.
 * style최상단에 body{background-color: #d7d8dc;} 추가. (body의 배경색을 변경하면 웹화면 자체의 배경 색상을 변경하게됨.) 
