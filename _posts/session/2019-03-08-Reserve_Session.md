@@ -296,4 +296,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
         font-size:14px;
     }
 ```
-&nbsp;**26. feed 속성 추가**
+&nbsp;**26. Model 구성하기. models.py 파일 내용 추가**
+```python 
+class Article(models.Model):
+    author = models.CharField(max_length=120)
+    title = models.CharField(max_length=120)
+    text = models.TextField()
+    password = models.CharField(max_length=120)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+```
+* 모델을 조작했기 때문에 migrate해주기.
+```console
+ python manage.py makemigrations
+ python manage.py migrate
+```
