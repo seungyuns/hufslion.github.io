@@ -236,7 +236,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 * .container의 height를 삭제하기.
 * style최상단에 body{background-color: #d7d8dc;} 추가. (body의 배경색을 변경하면 웹화면 자체의 배경 색상을 변경하게됨.) 
 
-&nbsp;**24. home.html 틀잡기.**
+&nbsp;**24. home.html 틀잡기. feed 생성**
 * 공통(base.html)만들때 keep해둔 block 지정해주기. (content가 들어갈 부분을 지정해주기) base.html container에 블록 지정.
 ```python 
    <div class="container">
@@ -264,4 +264,36 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 {%endblock%}  
 ```
- 
+&nbsp;**25. feed 속성 추가**
+* 바탕 속성
+```css
+  .feed{
+        background-color: #ffffff;
+        border-top: 1px solid #c0c0c0;
+        broder-bottom: 1px solid #c0c0c0;
+        margin: 7px 0;
+        padding: 12px;
+    }
+```
+* 글자 속성
+```css
+ .date{
+        color:#999;
+        margin-bottom:10px;
+    }
+    .title{
+        color:#6184dd;
+        font-weight:600;
+    }
+    .content{
+        margin-top:5px;
+    }
+    .accessory{
+        border-top: 1px solid #eee;
+        padding-top:10px;
+        maargin-top:10px;
+        color: #999;
+        font-size:14px;
+    }
+```
+&nbsp;**26. feed 속성 추가**
