@@ -94,6 +94,8 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
 ```python
  {%extends 'base.html' %}
 ```
+* keep: 추후 공통html에 다른 내용이 들어갈 부분을 block으로 지정해주고, 들어가는 내용을 block으로 지정해 줘야함.   
+
 &nbsp;**16. 확인하기 쉽게 base.html에 기본 css 입히기.**
 ```html
 <style>
@@ -234,4 +236,32 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 * .container의 height를 삭제하기.
 * style최상단에 body{background-color: #d7d8dc;} 추가. (body의 배경색을 변경하면 웹화면 자체의 배경 색상을 변경하게됨.) 
 
-&nbsp;**23. 하단 디테일 잡기.**
+&nbsp;**23. home.html 틀잡기. **
+* 공통(base.html)만들때 keep해둔 block 지정해주기. (content가 들어갈 부분을 지정해주기) base.html container에 블록 지정.
+```python 
+   <div class="container">
+        {%block contents%}
+        
+        {%endblock%}    
+    </div>
+ ```
+ * home.html 에 기본 html틀 잡고, block으로 감싸주기.
+```html
+{%extends 'base.html' %}
+{%block contents%}
+         
+<div class="container">
+    <div class="feed">
+        <h3 class="name"> 이름</h3>
+        <div class="date">날짜 </div>
+        <a class="title"> 글 제목</a>
+        <p class="content"> 글 내용</p>
+        <div class="accessory">
+            <img src="/static/ic_like.jpg" width="16px"> Like <img src="/static/ic_conmment.jpg" width="16px"> Comments
+        </div>
+    </div>
+</div>
+
+{%endblock%}  
+```
+ 
