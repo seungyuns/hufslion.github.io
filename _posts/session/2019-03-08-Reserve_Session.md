@@ -313,3 +313,50 @@ class Article(models.Model):
  python manage.py makemigrations
  python manage.py migrate
 ```
+&nbsp;**27 모델링한 내용 확인하기 위해 관리자 계정 생성하기.**
+```console 
+ python manage.py createsuperuser
+ ```
+ * settings.py파일 LANGUAGE_CODE 변경하여 관리자 페이지 한글화 하기 
+ ```python
+  LANGUAGE_CODE='ko'
+  ```
+  * 직접 만든 모델 관리자 페이지에 등록하기 (facebook/admin.py) 파일 들어가서 설정
+```python 
+  from facebookapp.models import Article
+  admin.site.register(Article)
+```
+* 관리자페이지에서 글 두개이상 작성해 보기
+
+&nbsp;**28 home 페이지가 실제 데이터베이스(모델)을 반영할 수 있도록 연결하기**
+* views.py파일 home 함수를 수정하기 (models 임포트하고 모델내용 넘겨주기)
+```python
+from django.shortcuts import render
+from facebookapp.models import Article
+
+def home(request):
+    articles= Article.objects.all()
+    return render(request, 'home.html', {'articles':articles})
+ ```
+ * home.html에서 넘겨받은 모델정보 표시하기.
+ ```python 
+ {%extends 'base.html' %}
+{%block contents%}
+         
+<div class="container">
+    {%for feed in articles %}
+    <div class="feed">
+        <h3 class="name">{{feed.author}}</h3>
+        <div class="date">{{feed.created_at}} </div>
+        <a class="title"> {{feed.title}}</a>
+        <p class="content">{{feed.text}}</p>
+        <div class="accessory">
+            <img src="/static/ic_like.jpg" width="16px"> Like <img src="/static/ic_comment.jpg" width="16px"> Comments
+        </div>
+    </div>
+    {%endfor%}
+</div>
+
+{%endblock%}  
+```
+ 
