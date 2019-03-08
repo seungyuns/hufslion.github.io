@@ -8,7 +8,9 @@ category: Session # 본인에게 맞는 카테고리명을 적으세요
 
 # VS코드로 간단한 페이스북 구현하기.
 <img src='https://user-images.githubusercontent.com/37537337/54030758-f54d8c00-41ef-11e9-9a5f-7e253c8296ba.JPG' width=500px>
+
 ---
+
 <br>
 
 &nbsp;**1. 페이스북 프로젝트를 담을 폴더 생성.**
