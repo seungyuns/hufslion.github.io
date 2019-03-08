@@ -313,7 +313,7 @@ class Article(models.Model):
  python manage.py makemigrations
  python manage.py migrate
 ```
-&nbsp;**27 모델링한 내용 확인하기 위해 관리자 계정 생성하기.**
+&nbsp;**27. 모델링한 내용 확인하기 위해 관리자 계정 생성하기.**
 ```console 
  python manage.py createsuperuser
  ```
@@ -328,7 +328,7 @@ class Article(models.Model):
 ```
 * 관리자페이지에서 글 두개이상 작성해 보기
 
-&nbsp;**28 home 페이지가 실제 데이터베이스(모델)을 반영할 수 있도록 연결하기**
+&nbsp;**28. home 페이지가 실제 데이터베이스(모델)을 반영할 수 있도록 연결하기**
 * views.py파일 home 함수를 수정하기 (models 임포트하고 모델내용 넘겨주기)
 ```python
 from django.shortcuts import render
@@ -360,7 +360,7 @@ def home(request):
 {%endblock%}  
 ```
 
-&nbsp;**29 자세히 보기 페이지 만들기**
+&nbsp;**29. 자세히 보기 페이지 만들기**
 * facebookapp/template폴더 안에 detail.html 생성.
 * views.py 파일에서 detail 페이지 함수 추가.
 ```python 
@@ -404,6 +404,87 @@ def detail(request, article_id):
         text-decoration: none;
     }
 ```
+* detail.html 내용 작성하기
+```html
+{%extends 'base.html' %}
+{%block contents%}
+         
+<div class="container">
+    <div class="feed">
+        <h3 class="name">{{feed.author}}</h3>
+        <div class="date">{{feed.created_at}} </div>
+        <a class="title"> {{feed.title}}</a>
+        <p class="content">{{feed.text}}</p>
+        <div class="accessory">
+            <img src="/static/ic_like.jpg" width="16px"> Like <img src="/static/ic_comment.jpg" width="16px"> Comments
+        </div>
+    </div>
+</div>
 
+{%endblock%}  
+```
 
+&nbsp;**30. 게시글 작성 페이지 만들기(form 작성하기)**
+* new.html 파일 생성하기.
+* views.py 파일에 new 함수 만들기.
+```python
+def new(request):
+    return render(request, 'new.html')
+```
+* url.py 파일에 new페이지 path 설정하기.
+```python 
+path('new/', facebookapp.views.new, name="new"),
+```
+* new.html파일에 form태그로 입력창 만들기
+```html
+{%extends 'base.html' %}
+{%block contents%}
+         
+<div class="form_box">
+    <h3> 게시물 작성하기</h3>
+    <input class="input_field" type="text" placeholder="글쓴이의 이름은?"><br>
+    <input class="input_field" type="password" placeholder="글 비밀번호"><br>
+    <input class="input_field" type="text" placeholder="제목을 입력해주세요"><br>
+    <textarea class="textarea_field" placeholder="내용을 입력해주세요."></textarea><br>
+    <button class="write_button">게시</button>
+</div>
+
+{%endblock%}  
+```
+* new.html 폼 css로 스타일링해주기.
+```css
+  .form_box{
+        background-color:#ffffff;
+        margin: 10px;
+        border-radius:4px;
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+    .input_field{
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 4px;
+        margin: 3px 0;
+        font-size: 14px;
+        width:100%;
+    }
+    .textarea_field{
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 4px;
+        margin: 3px 0;
+        font-size: 14px;
+        width: 100%;
+        height: 160px;
+    }
+    .write_button{
+        background-color:#475d9f;
+        border: 1px solid #323f6b;
+        color:#ffffff;
+        border-radius:4px;
+        padding:2px 8px;
+        font-size:18px;
+    }
+ ```
+ 
 
